@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMATS Transport - View Pass</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <style> 
+        /* 1. FORCE RESET ON BODY AND HTML */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #fff !important;
+        }
+        /* 2. THE GAP KILLER: Force the header to contain its internal margins */
+        header {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block;
+            overflow: hidden; /* Prevents internal margins from pushing the header down */
+            background: #0164E7BF; /* Your primary blue */
+            height: auto !important;
+            min-height: 0 !important;
+        }
+        /* 3. TARGET THE NAVBAR specifically to remove Bootstrap's default 0.5rem margin */
+        .navbar {
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            max-height: 35px;
+        }
+        /* 4. TARGET THE CLOCK CONTAINER */
+        .pass-valid-banner {
+            margin-top: 3px !important; /* Ensures no gap between blue header and green banner */
+            padding: 10px 0;
+            background: #25ba07;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* 5. REMOVE SPACE FROM LOGO TEXT */
+        .logo h1 {
+            margin: 0 !important;
+            line-height: 1.5;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden !important;
+            width: 100% !important;
+            background: #fff !important;
+        }
+        header {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        header .container {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            max-width: 100% !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
+        header .navbar { padding: 0 !important; margin: 0 !important; }
+
+        .pass-main-wrap {
+            margin: -20px 0 0 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        /* Pass card desktop */
+        .pass-card {
+            width: 360px;
+            margin: 10px auto 100px;
+            border: 1px solid #ddd;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Valid banner */
+        .pass-valid-banner { background: #25ba07; color: #fff; text-align: center; padding: 6px; }
+        .pass-valid-banner .pass-datetime { font-size: 18px; font-weight: 400; }
+        .pass-valid-banner .pass-status { font-size: 28px; font-weight: 700; }
+
+        /* Photo */
+        .pass-photo-wrap {
+            position: relative;
+            width: 100%;
+            overflow: visible;
+            padding-bottom: 40px;
+        }
+        .pass-photo {
+            width: 80%;
+            height: 45vh;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            object-position: center 75%;
+        }
+
+        /* QR */
+        .pass-qr {
+            width: 84px; height: 84px;
+            position: absolute; bottom: -10px; left: 50%;
+            transform: translateX(-50%);
+            background: #fff; padding: 4px; z-index: 2; display: block;
+        }
+
+        /* Info section */
+        .pass-info-section { text-align: center; padding: 16px 5px 6px; background: #ffffff; }
+        .pass-name { font-size: 21.6px; font-weight: 600; color: #000;  }
+        .pass-userid { font-size: 19.2px; font-weight: 600; color: #000; margin-bottom: 2px; }
+
+        /* Route banner */
+        .pass-route-banner {
+            background: #25ba07; color: #fff; text-align: center;
+            font-size: 22px; font-weight: 1000;
+            text-transform: uppercase; padding: 8px;
+        }
+
+        /* Bottom footer */
+        .bottom-footer { background: #418bed; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 100; }
+        .bottom-footer .container ul { display: flex; justify-content: space-around; align-items: center; list-style: none; margin: 0; padding: 4px 0; }
+        .bottom-footer .container ul li a img { width: 22px; height: 22px; }
+        .bottom-footer a.mob-home {
+            position: relative; top: -12px;
+            background: linear-gradient(136.42deg, #26CBFF 4.8%, #6980FD 99.39%);
+            border-radius: 50%; padding: 10px 8px; border: 3px solid #fff; display: inline-block;
+        }
+        .bottom-footer a.mob-home img { width: 22px; height: 22px; }
+
+        .mob-btn { border: none; background: transparent; color: #fff; }
+        .nav-links { margin-top: 5px; }
+        .nav-link.dropdown-toggle.bus-search { position: relative; color: #fff !important; }
+        .pass-req .dropdown-item { box-shadow: none; border-bottom: 1px solid #f2f2f2; padding-top: 5px; padding-bottom: 5px; }
+        .dropdown-content { display: none; position: absolute; background-color: #fff; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; margin-left: 10px; }
+        .dropdown-content a { float: none; color: #418bed; padding: 10px 15px; display: block; text-align: left; border-bottom: 1px solid #ccc; }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            html, body {
+                overflow: hidden !important;
+                height: 100% !important;
+                width: 100% !important;
+            }
+            .pass-card {
+                width: 100% !important;
+                margin: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+            }
+            .pass-photo {
+                width: 75% !important;
+                height: 37.5vh !important;
+                object-position: center 62% !important;
+            }
+            .pass-photo-wrap { padding-bottom: 38px !important; }
+            .pass-qr { width: 100px !important; height: 100px !important; bottom: -8px !important; }
+            .pass-info-section { padding: 8px 5px 4px !important; }
+            .pass-name { font-size: 22px !important; }
+            .pass-userid { font-size: 20px !important; }
+            .pass-route-banner { padding: 0px !important; font-size: 22px !important; }
+            .pass-valid-banner { padding: 4px !important; }
+            .pass-valid-banner .pass-datetime { font-size: 20px !important; }
+            .pass-valid-banner .pass-status { font-size: 28px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="margin:0 !important;padding-bottom:0 !important;display:block;line-height:0;">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="viewPass.html">
+                <div class="logo">
+                    <img src="img/logo.png" alt="SIMATS Logo">
+                    <h1>SIMATS TRANSPORTS</h1>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto nav-links">
+                    <li class="nav-item active"><a href="viewPass.html" style="text-decoration:none">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bus-search" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Pass Details</a>
+                        <div class="dropdown-menu pass-req">
+                            <a class="dropdown-item" href="renewpass.php">Renew Pass</a>
+                            <a class="dropdown-item" href="payment.html">Payment Status</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="notification2.html" style="text-decoration:none">Notification</a></li>
+                    <li class="nav-item"><a href="feedback2.php" style="text-decoration:none">Raise Issue</a></li>
+                    <li class="nav-item"><a href="daily-attendance.php" style="text-decoration:none">Attendance</a></li>
+                    <li class="nav-item"><a href="contactdetails.php" style="text-decoration:none">Contact</a></li>
+                </ul>
+                <ul class="form-inline right-nav my-2 my-lg-0 ps-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle pe-0" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="image/profile-image.png" alt="profile" class="header-img">
+                        </a>
+                        <div class="dropdown-menu prof-drop">
+                            <a class="dropdown-item" href="profile2.html">Profile</a>
+                            <a class="dropdown-item" href="changepassword2.php">Change Password</a>
+                            <a class="dropdown-item" href="updateprofile.php">Change Profile Picture</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link log-out" href="index.html"><span>Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Offcanvas Side Menu -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+            <div class="offcanvas-header">
+                <h6 class="offcanvas-title d-sm-block">&nbsp;</h6>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body px-0">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-truncate dropbtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/pass.jpeg" /><span class="ms-3 d-sm-inline"> Pass Details</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-content">
+                            <li><a class="dropdown-item" href="payment.html">Payment Status</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="feedback2.php" class="nav-link text-truncate"><img src="img/notification.png" /><span class="ms-3 d-sm-inline">Raise Issue</span></a></li>
+                    <li><a href="daily-attendance.php" class="nav-link text-truncate"><img src="img/attendance-info.png" /><span class="ms-3 d-sm-inline">Attendance</span></a></li>
+                    <li><a href="contactdetails.php" class="nav-link text-truncate"><img src="img/contact-icon.png" width="50" height="50" /><span class="ms-3 d-sm-inline">Contact</span></a></li>
+                    <li><a href="index.html" class="nav-link text-truncate"><img src="img/logout.png" /><span class="ms-3 d-sm-inline">Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="btn float-end mob-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+            <span style="font-size:24px;color:#fff;line-height:1;">&#9776;</span>
+        </button>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="pass-main-wrap" style="margin-top:-20px;padding:0;">
+    <div class="pass-card">
+
+        <div class="pass-valid-banner">
+            <div class="pass-datetime" id="live-clock"></div>
+            <div class="pass-status">VALID</div>
+        </div>
+
+        <div class="pass-photo-wrap">
+            <img src="img/img1.jpeg" alt="Student Photo" class="pass-photo">
+            <img src="img/qr-code.png" alt="QR Code" class="pass-qr" onerror="this.style.display='none';">
+        </div>
+
+        <div class="pass-info-section">
+            <div class="pass-name">Nega Shreeiya</div>
+            <div class="pass-userid">112301152</div>
+        </div>
+
+        <div class="pass-route-banner">LIGHT HOUSE M4</div>
+
+    </div>
+</div>
+
+<!-- BOTTOM FOOTER NAV -->
+<div class="bottom-footer">
+    <div class="container">
+        <ul>
+            <li><a href="profile2.html"><img src="img/user-prof.png" alt="profile"/></a></li>
+            <li><a href="viewPass.html" class="mob-home"><img src="img/f5.png" alt="home"/></a></li>
+            <li><a href="notification2.html"><img src="img/f3.png" alt="notifications"/></a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown').on('click', function() {
+            $(this).find('.dropdown-menu').toggle();
+        });
+    });
+    function updateClock() {
+        const now = new Date();
+        const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        const secs = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('live-clock').textContent = day + '-' + month + '-' + year + '  ' + hours + ':' + mins + ':' + secs;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMATS Transport - Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* Profile page watermark */
+        .profile-watermark-wrap {
+            position: relative;
+        }
+        .profile-watermark-wrap::before {
+            content: '';
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            background-image: url('img/logo-all.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .profile-watermark-wrap > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Profile photo circle */
+        .prof-photo-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            display: block;
+            margin: 0 auto 16px;
+        }
+
+        /* Info table rows */
+        .prof-info-table {
+            width: auto;
+            border: none;
+            margin: 0 auto;
+        }
+        .prof-info-table td {
+            border: none;
+            padding: 7px 12px;
+            font-size: 14px;
+        }
+        .prof-info-table td:first-child {
+            color: #333;
+            font-weight: 500;
+            width: 140px;
+        }
+        .prof-info-table td.colon {
+            width: 10px;
+            color: #333;
+        }
+        .prof-info-table td:last-child {
+            color: #333;
+        }
+
+        /* Action buttons */
+        .prof-action-btn {
+            background: #418bed;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .prof-action-btn:hover {
+            background: #2d6fd4;
+            color: #fff;
+        }
+
+        /* Bottom footer */
+        .bottom-footer {
+            background: #418bed;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .bottom-footer .container ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 8px 0;
+        }
+        .bottom-footer .container ul li a img {
+            width: 28px;
+            height: 28px;
+        }
+        .bottom-footer a.mob-home {
+            position: relative;
+            top: -18px;
+            background: linear-gradient(136.42deg, #26CBFF 4.8%, #6980FD 99.39%);
+            border-radius: 50%;
+            padding: 14px 10px;
+            border: 4px solid #fff;
+            display: inline-block;
+        }
+        .bottom-footer a.mob-home img {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Card wrapper */
+        .profile-outer-card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: calc(100% - 30px);
+            margin: 10px 15px 80px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .profile-page-wrap {
+            display: block;
+        }
+
+        /* Mob menu button */
+        .mob-btn {
+            border: none;
+            background: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="viewPass.html">
+                <div class="logo">
+                    <img src="img/logo.png" alt="SIMATS Logo">
+                    <h1>SIMATS TRANSPORTS</h1>
+                </div>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto nav-links">
+                    <li class="nav-item"><a href="viewPass.html" style="text-decoration:none">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bus-search" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Pass Details</a>
+                        <div class="dropdown-menu pass-req">
+                            <a class="dropdown-item" href="renewpass.php">Renew Pass</a>
+                            <a class="dropdown-item" href="payment.html">Payment Status</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="notification2.html" style="text-decoration:none">Notification</a></li>
+                    <li class="nav-item"><a href="feedback2.php" style="text-decoration:none">Raise Issue</a></li>
+                    <li class="nav-item"><a href="daily-attendance.php" style="text-decoration:none">Attendance</a></li>
+                    <li class="nav-item"><a href="contactdetails.php" style="text-decoration:none">Contact</a></li>
+                </ul>
+                <ul class="form-inline right-nav my-2 my-lg-0 ps-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle pe-0" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="image/profile-image.png" alt="profile" class="header-img">
+                        </a>
+                        <div class="dropdown-menu prof-drop">
+                            <a class="dropdown-item" href="profile2.html">Profile</a>
+                            <a class="dropdown-item" href="changepassword2.php">Change Password</a>
+                            <a class="dropdown-item" href="updateprofile.php">Change Profile Picture</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link log-out" href="index.html"><span>Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Offcanvas Side Menu -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+            <div class="offcanvas-header">
+                <h6 class="offcanvas-title d-sm-block" id="offcanvasLabel">&nbsp;</h6>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body px-0">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-truncate dropbtn" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/pass.jpeg" /><span class="ms-3 d-sm-inline"> Pass Details</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="payment.html">Payment Status</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="feedback2.php" class="nav-link text-truncate">
+                            <img src="img/notification.png" /><span class="ms-3 d-sm-inline">Raise Issue</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="daily-attendance.php" class="nav-link text-truncate">
+                            <img src="img/attendance-info.png" /><span class="ms-3 d-sm-inline">Attendance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contactdetails.php" class="nav-link text-truncate">
+                            <img src="img/contact-icon.png" width="50" height="50" /><span class="ms-3 d-sm-inline">Contact</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="nav-link text-truncate">
+                            <img src="img/logout.png" /><span class="ms-3 d-sm-inline">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="btn float-end mob-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+            <span style="font-size: 24px; color: #fff; line-height: 1;">&#9776;</span>
+        </button>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="mb-4 mt-2">
+    <div class="container">
+        <div class="profile-page-wrap">
+        <div class="profile-outer-card">
+
+            <!-- Single wrapper = one watermark logo -->
+            <div class="profile-watermark-wrap" style="padding: 24px 16px 10px; text-align:center;">
+                <img src="img/img1.jpeg" alt="Profile Photo" class="prof-photo-circle">
+
+                <table class="prof-info-table">
+                    <tr>
+                        <td>Name</td>
+                        <td class="colon">:</td>
+                        <td>Nega Shreeiya</td>
+                    </tr>
+                    <tr>
+                        <td>User Id</td>
+                        <td class="colon">:</td>
+                        <td>112301152</td>
+                    </tr>
+                    <tr>
+                        <td>Institution</td>
+                        <td class="colon">:</td>
+                        <td>SMC</td>
+                    </tr>
+                    <tr>
+                        <td>Bus Route</td>
+                        <td class="colon">:</td>
+                        <td>Light house M4</td>
+                    </tr>
+                    <tr>
+                        <td>Boarding Point</td>
+                        <td class="colon">:</td>
+                        <td>Avichi School</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="padding-bottom:0;">Destination</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="padding-top:0; font-weight:400;">Thandalam Campus - City Campus</td>
+                    </tr>
+                </table>
+
+                <!-- Action buttons -->
+                <div style="display:flex; gap:10px; justify-content:center; padding: 14px 12px 18px;">
+                    <a href="changepassword2.php" class="prof-action-btn">Change Password</a>
+                    <a href="updateprofile.php" class="prof-action-btn">Change Profile Photo</a>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- BOTTOM FOOTER NAV -->
+<div class="bottom-footer">
+    <div class="container">
+        <ul>
+            <li><a href="profile2.html"><img src="img/user-prof.png" alt="profile"/></a></li>
+            <li><a href="viewPass.html" class="mob-home"><img src="img/f5.png" alt="home"/></a></li>
+            <li><a href="notification2.html"><img src="img/f3.png" alt="notifications"/></a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
